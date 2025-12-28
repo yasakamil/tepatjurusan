@@ -23,6 +23,15 @@
     --color-brand-teal: #5DCBD3;
 
     /* Background Khusus Hero */
-    --color-bg-left: #F6F1FD; /* Ini ungu muda banget buat sisi kiri */
-    --color-bg-right: #EBE3FF; /* Ini ungu lebih kerasa buat sisi kanan */
+    --color-bg-left: #F6F1FD;
+    /* UPDATE: Warna kanan digelapin (Lebih Deep Purple) */
+    --color-bg-right: #D0BFFF; 
+
+    /* ANIMASI MARQUEE */
+    --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+
+    @keyframes infinite-scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-100%); }
+    }
 }
