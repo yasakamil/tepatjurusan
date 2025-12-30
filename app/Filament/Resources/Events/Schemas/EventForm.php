@@ -5,6 +5,12 @@ namespace App\Filament\Resources\Events\Schemas;
 use Filament\Forms;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
+use Filament\Schemas\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Get;
+use Filament\Forms\Components\FileUpload;
 
 class EventForm
 {
@@ -27,7 +33,9 @@ class EventForm
 
             Forms\Components\FileUpload::make('banner_media')
                 ->label('Banner Image / Video')
-                ->directory('events'),
+                ->disk('public')
+                ->directory('events')
+                ->visibility('public'),
 
             Forms\Components\Select::make('location_type')
                 ->options([
@@ -48,6 +56,32 @@ class EventForm
             Forms\Components\TextInput::make('price')
                 ->numeric()
                 ->prefix('Rp'),
+
+            Toggle::make('has_discount')
+                ->label('Aktifkan Diskon?')
+                ->onColor('success')
+                ->offColor('danger')
+                ->default(fn ($record) => $record?->discount_price !== null)
+                ->live()
+                ->dehydrated(false),
+
+            Section::make('Discount Settings')
+                ->schema([
+                    TextInput::make('discount_price')
+                            ->label('Discounted Price')
+                            ->numeric()
+                            ->prefix('IDR')
+                            ->lt('price')
+                            ->required(fn ($get) => $get('has_discount')), 
+
+                        DateTimePicker::make('discount_end_time')
+                            ->label('Discount Ends At')
+                            ->native(false)
+                            ->required(fn ($get) => $get('has_discount')),
+                        // ...
+                        ])
+                        ->columns(2)
+                        ->visible(fn ($get) => $get('has_discount')),
 
             Forms\Components\TextInput::make('quota')
                 ->numeric()

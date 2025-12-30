@@ -414,129 +414,140 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
-                <div class="relative h-48 overflow-hidden flex-shrink-0">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop" 
-                         alt="Course Image" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    
-                    <div class="absolute top-3 left-3 bg-rose-400/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3">
-                            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" />
-                        </svg>
-                        24:00:00
-                    </div>
+    @forelse($events as $event)
+    @php
+        // Logic Cek Diskon Aktif
+        $hasDiscount = $event->discount_price && 
+                       $event->discount_end_time && 
+                       \Carbon\Carbon::parse($event->discount_end_time)->isFuture();
+    @endphp
+
+    <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
+        
+        <div class="relative h-48 overflow-hidden flex-shrink-0">
+            <img src="{{ $event->banner_media ? asset('storage/' . $event->banner_media) : 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop' }}" 
+                 alt="{{ $event->title }}" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            
+            @if($hasDiscount)
+                <div class="absolute top-3 left-3 bg-rose-500/90 backdrop-blur-sm text-white text-[11px] font-bold px-2 py-1 rounded flex items-center gap-1 shadow-sm uppercase animate-pulse"
+                     data-countdown="{{ $event->discount_end_time }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="countdown-text">Loading...</span>
                 </div>
-
-                <div class="p-5 flex flex-col flex-1">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 leading-tight group-hover:text-brand-purple transition-colors">
-                        Complete Digital Marketing Mastery Course
-                    </h3>
-                    
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path d="M11.25 4.533A9.707 9.707 0 006 3.75a9.706 9.706 0 01-6 3.75V16.5a9.706 9.706 0 006-3.75h.75a9.706 9.706 0 016 3.75V4.533zM12.75 4.533V16.5a9.706 9.706 0 006-3.75h.75a9.706 9.706 0 016 3.75V3.75a9.707 9.707 0 00-5.25.783 9.707 9.707 0 00-5.25-.783h-.75z" /></svg>
-                            40 Lessons
-                        </span>
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" /></svg>
-                            4h 30m
-                        </span>
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.182-.311a51.056 51.056 0 014.982-2.43 7.5 7.5 0 011.59-.57 7.5 7.5 0 01-1.59.57c-1.87.554-3.643 1.4-5.186 2.456l.002-.005a49.854 49.854 0 01-2.9-1.516.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z" /><path d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 001.5 1.5h8.25a1.5 1.5 0 001.5-1.5v-1.27c-.42.156-.845.3-1.268.432-.973.305-1.96.57-2.922.79z" /></svg>
-                            811 Students
-                        </span>
-                    </div>
-
-                    <div class="mt-auto flex items-end justify-between border-t border-gray-100 pt-4">
-                        <span class="text-xs font-bold text-gray-900">
-                            23 December, 2025
-                        </span>
-                        <div class="text-right flex flex-col items-end">
-                             <span class="text-[10px] font-bold text-gray-400 line-through mb-0.5">IDR 50.000</span>
-                             <span class="text-sm font-extrabold text-brand-teal">IDR 20.000</span>
-                        </div>
-                    </div>
+            @else
+                <div class="absolute top-3 left-3 bg-brand-purple/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 shadow-sm uppercase">
+                    {{ $event->location_type ?? 'Event' }}
                 </div>
-            </div>
-
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
-                <div class="relative h-48 overflow-hidden flex-shrink-0">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" 
-                         alt="Course Image" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </div>
-
-                <div class="p-5 flex flex-col flex-1">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 leading-tight group-hover:text-brand-purple transition-colors">
-                        Advanced Data Science & Analytics Bootcamp
-                    </h3>
-                    
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path d="M11.25 4.533A9.707 9.707 0 006 3.75a9.706 9.706 0 01-6 3.75V16.5a9.706 9.706 0 006-3.75h.75a9.706 9.706 0 016 3.75V4.533zM12.75 4.533V16.5a9.706 9.706 0 006-3.75h.75a9.706 9.706 0 016 3.75V3.75a9.707 9.707 0 00-5.25.783 9.707 9.707 0 00-5.25-.783h-.75z" /></svg>
-                            32 Lessons
-                        </span>
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" /></svg>
-                            6h 15m
-                        </span>
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.182-.311a51.056 51.056 0 014.982-2.43 7.5 7.5 0 011.59-.57 7.5 7.5 0 01-1.59.57c-1.87.554-3.643 1.4-5.186 2.456l.002-.005a49.854 49.854 0 01-2.9-1.516.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z" /><path d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 001.5 1.5h8.25a1.5 1.5 0 001.5-1.5v-1.27c-.42.156-.845.3-1.268.432-.973.305-1.96.57-2.922.79z" /></svg>
-                            540 Students
-                        </span>
-                    </div>
-
-                    <div class="mt-auto flex items-end justify-between border-t border-gray-100 pt-4">
-                        <span class="text-xs font-bold text-gray-900">
-                            15 January, 2026
-                        </span>
-                        <div class="text-right flex flex-col items-end">
-                             <span class="text-sm font-extrabold text-brand-teal">IDR 35.000</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-             <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
-                <div class="relative h-48 overflow-hidden flex-shrink-0">
-                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop" 
-                         alt="Course Image" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </div>
-
-                <div class="p-5 flex flex-col flex-1">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 leading-tight group-hover:text-brand-purple transition-colors">
-                        UI/UX Design Fundamentals for Beginners
-                    </h3>
-                    
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path d="M11.25 4.533A9.707 9.707 0 006 3.75a9.706 9.706 0 01-6 3.75V16.5a9.706 9.706 0 006-3.75h.75a9.706 9.706 0 016 3.75V4.533zM12.75 4.533V16.5a9.706 9.706 0 006-3.75h.75a9.706 9.706 0 016 3.75V3.75a9.707 9.707 0 00-5.25.783 9.707 9.707 0 00-5.25-.783h-.75z" /></svg>
-                            25 Lessons
-                        </span>
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" /></svg>
-                            3h 45m
-                        </span>
-                        <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.182-.311a51.056 51.056 0 014.982-2.43 7.5 7.5 0 011.59-.57 7.5 7.5 0 01-1.59.57c-1.87.554-3.643 1.4-5.186 2.456l.002-.005a49.854 49.854 0 01-2.9-1.516.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z" /><path d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 001.5 1.5h8.25a1.5 1.5 0 001.5-1.5v-1.27c-.42.156-.845.3-1.268.432-.973.305-1.96.57-2.922.79z" /></svg>
-                            1.2k Students
-                        </span>
-                    </div>
-
-                    <div class="mt-auto flex items-end justify-between border-t border-gray-100 pt-4">
-                        <span class="text-xs font-bold text-gray-900">
-                            10 February, 2026
-                        </span>
-                        <div class="text-right flex flex-col items-end">
-                             <span class="text-sm font-extrabold text-brand-teal">IDR 25.000</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @endif
         </div>
+
+        <div class="p-5 flex flex-col flex-1">
+            <h3 class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 leading-tight group-hover:text-brand-purple transition-colors">
+                {{ $event->title }}
+            </h3>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+                 @php
+                    $start = \Carbon\Carbon::parse($event->start_datetime);
+                    $end = \Carbon\Carbon::parse($event->end_datetime);
+                    $duration = $start->diffInHours($end) ?: 1;
+                @endphp
+                <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" /></svg>
+                    {{ $duration }} Hours
+                </span>
+                <span class="px-2 py-1 border border-gray-200 rounded text-[10px] font-bold text-gray-500 flex items-center gap-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-gray-400"><path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-4.42 6.753 6.753 0 01-4.825 3.316z" /></svg>
+                    {{ $event->quota }} Seats
+                </span>
+            </div>
+
+            <div class="mt-auto flex items-end justify-between border-t border-gray-100 pt-4">
+                <span class="text-xs font-bold text-gray-900">
+                    {{ \Carbon\Carbon::parse($event->start_datetime)->format('d F, Y') }}
+                </span>
+                
+                <div class="text-right flex flex-col items-end">
+                    @if($hasDiscount)
+                        <span class="text-[10px] font-bold text-gray-400 line-through mb-0.5">
+                            IDR {{ number_format($event->price, 0, ',', '.') }}
+                        </span>
+                        <span class="text-sm font-extrabold text-rose-500">
+                            IDR {{ number_format($event->discount_price, 0, ',', '.') }}
+                        </span>
+                    @else
+                        @if($event->price == 0)
+                            <span class="text-sm font-extrabold text-brand-teal">FREE</span>
+                        @else
+                            <span class="text-sm font-extrabold text-brand-teal">
+                                IDR {{ number_format($event->price, 0, ',', '.') }}
+                            </span>
+                        @endif
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+@empty
+    @endforelse
+
+</div>
+    </div>
+</section>
+
+<section class="w-full py-16 md:py-24 bg-white font-sans">
+    <div class="w-full max-w-[1318px] mx-auto px-6 md:px-8 lg:px-12">
+        
+        <div class="flex flex-col md:flex-row justify-between items-end md:items-center mb-12 gap-4">
+            <div class="max-w-2xl">
+                <span class="text-brand-purple text-xs font-bold uppercase tracking-widest border-b border-brand-purple pb-1">
+                    News & Articles
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-4 leading-tight">
+                    Announcement & <span class="text-brand-purple">feeds</span> news
+                </h2>
+            </div>
+            
+            <a href="#" class="px-8 py-3 bg-brand-teal text-white text-sm font-bold rounded shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                View All
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+
+    @forelse($articles as $article)
+        <article class="group cursor-pointer flex flex-col h-full">
+            <div class="relative overflow-hidden rounded-lg mb-5">
+                <img src="{{ asset('storage/' . $article->thumbnail) }}" 
+                     alt="{{ $article->title }}" 
+                     class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                
+                <div class="absolute top-6 left-6 w-12 h-12 bg-brand-teal flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+                    {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-1">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 leading-snug group-hover:text-brand-purple transition-colors line-clamp-2">
+                    {{ $article->title }}
+                </h3>
+                <p class="text-sm text-gray-400 font-medium mt-auto">
+                    {{ $article->published_at->format('M d, Y') }} 
+                    <span class="mx-1">.</span> 
+                    {{ $article->read_time }}
+                </p>
+            </div>
+        </article>
+    @empty
+        <div class="col-span-3 text-center py-10 text-gray-400">
+            Belum ada berita terbaru.
+        </div>
+    @endforelse
+
+</div>
     </div>
 </section>
 </x-app-layout>

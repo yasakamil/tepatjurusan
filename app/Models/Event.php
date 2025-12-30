@@ -17,6 +17,8 @@ class Event extends Model
         'start_datetime',
         'end_datetime',
         'price',
+        'discount_price',
+        'discount_end_time',
         'quota',
         'status',
     ];
