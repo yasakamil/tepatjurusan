@@ -2,88 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccountRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\AccountRegistration;
 
 class AuthController extends Controller
 {
-    public function showRegister()
+    // Tampilkan form register
+    public function showRegisterForm()
     {
         return view('auth.register');
     }
 
+    // Proses register
     public function register(Request $request)
     {
-        // 1. Validasi
-        $validated = $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|string|email|max:255|unique:account_registrations',
-            'no_telfon' => 'required|numeric',
-            'password'  => 'required|string|min:8|confirmed',
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:account_registrations,email',
+            'no_telfon' => 'required|string|max:20',
+            'password' => 'required|string|min:6|confirmed', // perlu field password_confirmation
         ]);
 
-        try {
-            // 2. Simpan ke Database
-            $user = AccountRegistration::create([
-                'nama'      => $request->name,
-                'email'     => $request->email,
-                'no_telfon' => $request->no_telfon,
-                'password'  => Hash::make($request->password),
-            ]);
+        // Buat user baru
+        $user = AccountRegistration::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'no_telfon' => $request->no_telfon,
+            'password' => Hash::make($request->password),
+            'status' => 'pending',
+        ]);
 
-            // 3. Auto Login
-            Auth::guard('member')->login($user);
+        // Login otomatis setelah register
+        Auth::login($user);
 
-            // 4. Redirect dengan Pesan SUKSES (SweetAlert)
-            return redirect('/')->with('success_register', 'Selamat! Akun kamu berhasil dibuat. Welcome to the club! 🚀');
-
-        } catch (\Exception $e) {
-            // Kalau error database, balikin ke form
-            return back()->withInput()->withErrors(['email' => 'Gagal bikin akun: ' . $e->getMessage()]);
-        }
+        return redirect()->route('/dashboard')->with('success', 'Register berhasil!');
     }
 
-    // ==========================================
-    // LOGIN (MASUK)
-    // ==========================================
-    public function showLogin()
+    // Tampilkan form login
+    public function showLoginForm()
     {
-        return view('auth.login'); // Pastikan file view ini ada
+        return view('auth.login');
     }
 
+    // Proses login
     public function login(Request $request)
     {
-        // 1. Validasi Input
         $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required'],
+            'email' => 'required|email',
+            'password' => 'required|string',
         ]);
 
-        // 2. Coba Login pake Guard 'member'
-        // (Ini bakal otomatis cek email & password di tabel account_registrations)
-        if (Auth::guard('member')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/'); // Redirect ke halaman tujuan atau home
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // keamanan session
+            return redirect()->intended('/dashboard');
         }
 
-        // 3. Kalau Gagal
         return back()->withErrors([
-            'email' => 'Email atau password salah, coba lagi bro.',
-        ])->onlyInput('email');
+            'email' => 'Email atau password salah.',
+        ]);
     }
 
-    // ==========================================
-    // LOGOUT (KELUAR)
-    // ==========================================
+    // Logout
     public function logout(Request $request)
     {
-        Auth::guard('member')->logout(); // Logout spesifik member
-        
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

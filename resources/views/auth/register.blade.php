@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,4 +91,14 @@
         </div>
     </div>
 </body>
-</html>
+</html> --}}
+
+<form method="POST" action="{{ route('register') }}">
+    @csrf
+    <input type="text" name="nama" placeholder="Nama" value="{{ old('nama') }}" required>
+    <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+    <input type="text" name="no_telfon" placeholder="No Telepon" value="{{ old('no_telfon') }}" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
+    <button type="submit">Register</button>
+</form>
