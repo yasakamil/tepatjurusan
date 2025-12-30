@@ -3,7 +3,11 @@
     <div class="hidden lg:block bg-brand-purple text-white text-xs py-2.5 relative z-20">
         <div class="container mx-auto px-6 lg:px-12 flex justify-between items-center">
             <span class="opacity-90 font-medium truncate">
-                Welcome back, {{ $username ?? 'Guest' }}
+                @if(Auth::guard('member')->check())
+                    Welcome back, {{ Auth::guard('member')->user()->nama }}
+                @else
+                    Welcome to Tepat Jurusan Official Site
+                @endif
             </span>
             <div class="flex gap-6 font-medium">
                 <span class="hover:text-white/80 transition-colors cursor-pointer">+62 878-7727-3131</span>
@@ -22,7 +26,7 @@
             </a>
 
             <div class="hidden lg:flex items-center gap-8 font-bold text-sm uppercase tracking-wider text-gray-500">
-                <a href="#" class="text-brand-purple transition-colors relative group">
+                <a href="/" class="text-brand-purple transition-colors relative group">
                     Home.
                     <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple scale-x-100 transition-transform"></span>
                 </a>
@@ -41,14 +45,25 @@
             </div>
 
             <div class="hidden lg:flex items-center gap-4">
-                <a href="#" class="px-7 py-2.5 bg-brand-teal text-white font-bold text-sm rounded shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                    SIGN UP
-                </a>
-                <a href="#" class="px-7 py-2.5 border border-gray-200 text-gray-500 font-bold text-sm rounded hover:border-brand-teal hover:text-brand-teal hover:bg-teal-50 transition-all duration-300">
-                    SIGN IN
-                </a>
+                @if(Auth::guard('member')->check())
+                    <span class="text-sm font-bold text-gray-700">
+                        Hi, {{ Auth::guard('member')->user()->nama }}
+                    </span>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="px-5 py-2.5 border border-red-200 text-red-500 font-bold text-sm rounded hover:bg-red-50 transition-all duration-300">
+                            LOGOUT
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('register') }}" class="px-7 py-2.5 bg-brand-teal text-white font-bold text-sm rounded shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                        SIGN UP
+                    </a>
+                    <a href="{{ route('login') }}" class="px-7 py-2.5 border border-gray-200 text-gray-500 font-bold text-sm rounded hover:border-brand-teal hover:text-brand-teal hover:bg-teal-50 transition-all duration-300">
+                        SIGN IN
+                    </a>
+                @endif
             </div>
-
 
             <div class="flex lg:hidden items-center gap-2 sm:gap-4 text-gray-700">
                 <button type="button" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
@@ -85,15 +100,33 @@
 
                         <div class="flex-1 overflow-y-auto py-6 px-6">
                             <nav class="flex flex-col space-y-6">
-                                <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Home</a>
+                                <a href="/" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Home</a>
                                 <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Events</a>
                                 <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">About Us</a>
                                 <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Contact</a>
                                 <hr class="border-gray-100 my-4">
+                                
                                 <div class="flex flex-col gap-4">
-                                    <a href="#" class="w-full py-3 text-center text-brand-purple border-2 border-brand-purple font-bold rounded-lg">Log In</a>
-                                    <a href="#" class="w-full py-3 text-center bg-brand-teal text-white font-bold rounded-lg shadow-md">Sign Up Now</a>
+                                    @if(Auth::guard('member')->check())
+                                        <div class="text-center font-bold text-gray-900 text-lg">
+                                            Hi, {{ Auth::guard('member')->user()->nama }}
+                                        </div>
+                                        <form action="{{ route('logout') }}" method="POST" class="w-full">
+                                            @csrf
+                                            <button type="submit" class="w-full py-3 text-center text-red-500 border-2 border-red-200 font-bold rounded-lg hover:bg-red-50">
+                                                Logout
+                                            </button>
+                                        </form>
+                                    @else
+                                        <a href="{{ route('login') }}" class="w-full py-3 text-center text-brand-purple border-2 border-brand-purple font-bold rounded-lg hover:bg-purple-50">
+                                            Log In
+                                        </a>
+                                        <a href="{{ route('register') }}" class="w-full py-3 text-center bg-brand-teal text-white font-bold rounded-lg shadow-md hover:bg-teal-600">
+                                            Sign Up Now
+                                        </a>
+                                    @endif
                                 </div>
+
                             </nav>
                         </div>
                     </div>
@@ -102,37 +135,3 @@
         </div>
     </div>
 </header>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuToggleBtn = document.getElementById('menu-toggle-btn');
-        const menuCloseBtn = document.getElementById('menu-close-btn');
-        const offcanvasMenu = document.getElementById('offcanvas-menu');
-        const menuBackdrop = document.getElementById('menu-backdrop');
-        const menuPanel = document.getElementById('menu-panel');
-
-        function openMenu() {
-            offcanvasMenu.classList.remove('hidden');
-            setTimeout(() => {
-                menuBackdrop.classList.remove('opacity-0');
-                menuBackdrop.classList.add('opacity-100');
-                menuPanel.classList.remove('translate-x-full');
-                menuPanel.classList.add('translate-x-0');
-            }, 20);
-        }
-
-        function closeMenu() {
-            menuBackdrop.classList.remove('opacity-100');
-            menuBackdrop.classList.add('opacity-0');
-            menuPanel.classList.remove('translate-x-0');
-            menuPanel.classList.add('translate-x-full');
-            setTimeout(() => {
-                offcanvasMenu.classList.add('hidden');
-            }, 300);
-        }
-
-        if(menuToggleBtn) menuToggleBtn.addEventListener('click', openMenu);
-        if(menuCloseBtn) menuCloseBtn.addEventListener('click', closeMenu);
-        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
-    });
-</script>

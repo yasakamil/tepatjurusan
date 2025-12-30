@@ -35,3 +35,37 @@ document.addEventListener('DOMContentLoaded', function () {
             updateTimer(); // Jalanin sekali pas load biar ga nunggu 1 detik
         });
     });
+
+document.addEventListener('DOMContentLoaded', function() {
+        const menuToggleBtn = document.getElementById('menu-toggle-btn');
+        const menuCloseBtn = document.getElementById('menu-close-btn');
+        const offcanvasMenu = document.getElementById('offcanvas-menu');
+        const menuBackdrop = document.getElementById('menu-backdrop');
+        const menuPanel = document.getElementById('menu-panel');
+
+        function openMenu() {
+            offcanvasMenu.classList.remove('hidden');
+            setTimeout(() => {
+                menuBackdrop.classList.remove('opacity-0');
+                menuBackdrop.classList.add('opacity-100');
+                menuPanel.classList.remove('translate-x-full');
+                menuPanel.classList.add('translate-x-0');
+            }, 20);
+        }
+
+        function closeMenu() {
+            menuBackdrop.classList.remove('opacity-100');
+            menuBackdrop.classList.add('opacity-0');
+            menuPanel.classList.remove('translate-x-0');
+            menuPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                offcanvasMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        if(menuToggleBtn) menuToggleBtn.addEventListener('click', openMenu);
+        if(menuCloseBtn) menuCloseBtn.addEventListener('click', closeMenu);
+        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+    });
+
+    

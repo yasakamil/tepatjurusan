@@ -550,4 +550,104 @@
 </div>
     </div>
 </section>
+
+<section class="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-gray-900">
+    <video
+        class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1920&auto=format&fit=crop" >
+        <source src="{{ asset('videos/campus.mp4') }}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="absolute inset-0 bg-black/20"></div>
+    </section>
+
+    <section class="w-full py-20 bg-white">
+    <div class="container mx-auto px-6 text-center">
+        
+        <div class="flex justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-gray-700">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.24 50.552 50.552 0 00-2.658.813m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+            </svg>
+        </div>
+
+        <a href="#" class="inline-block text-[10px] md:text-xs font-bold text-brand-purple uppercase tracking-widest border-b border-brand-purple pb-0.5 mb-8 hover:opacity-80 transition">
+            Our Purpose
+        </a>
+
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight max-w-4xl mx-auto mb-16">
+            Tepat Jurusan helps adolescents develop character and independence in choosing their 
+            <span class="text-brand-purple">education</span> and career paths through psychological guidance and group counseling.
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-3xl mx-auto border-t border-gray-100 pt-10 md:pt-0 md:border-t-0">
+            
+            <div class="flex flex-col items-center">
+                <span class="text-brand-purple font-bold text-[10px] uppercase tracking-wider mb-1">
+                    Student Nationalities
+                </span>
+                <span class="text-5xl md:text-6xl font-extrabold" 
+                      style="-webkit-text-stroke: 1px #374151; color: transparent;">
+                    05
+                </span>
+            </div>
+
+            <div class="flex flex-col items-center">
+                <span class="text-brand-purple font-bold text-[10px] uppercase tracking-wider mb-1">
+                    International Students
+                </span>
+                <span class="text-5xl md:text-6xl font-extrabold" 
+                      style="-webkit-text-stroke: 1px #374151; color: transparent;">
+                    25%
+                </span>
+            </div>
+
+            <div class="flex flex-col items-center">
+                <span class="text-brand-purple font-bold text-[10px] uppercase tracking-wider mb-1">
+                    Different Majors
+                </span>
+                <span class="text-5xl md:text-6xl font-extrabold" 
+                      style="-webkit-text-stroke: 1px #374151; color: transparent;">
+                    20
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Cek apakah ada pesan sukses dari Controller?
+        @if(session('success_register'))
+            Swal.fire({
+                title: 'Welcome Aboard! 🎉',
+                text: "{{ session('success_register') }}",
+                icon: 'success',
+                confirmButtonText: 'Let\'s Go!',
+                confirmButtonColor: '#7C3AED', // Warna Ungu Brand Lu
+                background: '#ffffff',
+                backdrop: `
+                    rgba(124, 58, 237, 0.4)
+                    url("https://media.giphy.com/media/xT0xezQGU5xCXJuNz2/giphy.gif")
+                    left top
+                    no-repeat
+                `
+            });
+        @endif
+
+        // Cek apakah ada pesan error login?
+        @if($errors->any())
+            Swal.fire({
+                title: 'Oops!',
+                html: '<ul class="text-left text-sm">@foreach($errors->all() as $error)<li>⚠️ {{ $error }}</li>@endforeach</ul>',
+                icon: 'error',
+                confirmButtonColor: '#EF4444',
+            });
+        @endif
+    </script>
+</body>
+</section>
 </x-app-layout>

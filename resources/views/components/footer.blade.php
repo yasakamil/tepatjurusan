@@ -1,19 +1,45 @@
-<footer class="bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] text-white pt-32 pb-10 mt-auto relative">
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+<footer class="bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] text-white pt-48 pb-10 mt-40 relative">
+    
+    <div class="absolute -top-32 left-0 right-0 px-6 z-20">
+        <div class="container mx-auto max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row text-gray-800">
+            
+            <div class="w-full md:w-1/2 h-64 md:h-auto relative">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" 
+                     alt="Contact Us" 
+                     class="absolute inset-0 w-full h-full object-cover">
+            </div>
 
-    <div class="container mx-auto px-6 relative z-0">
+            <div class="w-full md:w-1/2 p-10 flex flex-col justify-center text-left">
+                <h3 class="text-3xl font-bold text-gray-900 mb-2">
+                    Apply for <span class="text-rose-500">admission?</span>
+                </h3>
+                <p class="text-gray-500 text-sm mb-8 leading-relaxed">
+                    A place to provide students with enough knowledge and skills in a complex world. 
+                    Are you looking for exceptional education experience?
+                </p>
+                <div>
+                    <a href="#" class="inline-block px-8 py-3 bg-rose-500 text-white font-bold text-sm rounded hover:bg-rose-600 transition-colors shadow-lg shadow-rose-500/30">
+                        CONTACT US
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] z-0 pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             
             <div class="lg:col-span-1">
-    
-    <div class="mb-6">
-        <img src="{{ asset('images/TEPAT JURUSAN BARU 1.png') }}" 
-             alt="Logo Tepat Jurusan" 
-             class="h-12 w-auto">
-    </div>
-    <p class="text-purple-100 text-sm leading-relaxed mb-6">
-        Jurusan tepat, masa depan cerah. Karena keputusan hari ini menentukan kualitas hidupmu esok hari.
-    </p>
+                <div class="mb-6">
+                    <img src="{{ asset('images/TEPAT JURUSAN BARU 1.png') }}" 
+                         alt="Logo Tepat Jurusan" 
+                         class="h-12 w-auto brightness-0 invert"> 
+                         </div>
+                <p class="text-purple-100 text-sm leading-relaxed mb-6">
+                    Jurusan tepat, masa depan cerah. Karena keputusan hari ini menentukan kualitas hidupmu esok hari.
+                </p>
                 <div class="flex space-x-4">
                     <a href="#" class="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-white/20 transition">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
@@ -37,7 +63,8 @@
             </div>
 
             <div class="lg:col-span-1">
-                <h4 class="font-bold mb-6 opacity-0 md:block hidden">Links</h4> <ul class="space-y-3 text-sm text-purple-100 mt-0 md:mt-12">
+                <h4 class="font-bold mb-6 opacity-0 md:block hidden">Links</h4> 
+                <ul class="space-y-3 text-sm text-purple-100 mt-0 md:mt-12">
                     <li><a href="#" class="hover:text-white transition">Blog</a></li>
                     <li><a href="#" class="hover:text-white transition">Contact</a></li>
                     <li><a href="#" class="hover:text-white transition">404</a></li>
