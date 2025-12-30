@@ -24,4 +24,11 @@ class AccountRegistration extends Model
         return $this->hasMany(Payment::class);
     }
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class)
+            ->withPivot(['status', 'paid_at'])
+            ->withTimestamps();
+    }
+    
 }

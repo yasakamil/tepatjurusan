@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Payment extends Model
 {
@@ -22,25 +23,35 @@ class Payment extends Model
 
     protected $casts = [
         'transaction_time' => 'datetime',
-        'settlement_time' => 'datetime',
-        'raw_response' => 'array',
+        'settlement_time'  => 'datetime',
+        'raw_response'     => 'array',
+        'gross_amount'     => 'integer',
     ];
 
-    public function accountRegistration()
+    /**
+     * Relasi ke akun pendaftar (student)
+     */
+    public function accountRegistration(): BelongsTo
     {
         return $this->belongsTo(AccountRegistration::class);
     }
 
-    public function event()
+    /**
+     * Relasi ke event
+     */
+    public function event(): BelongsTo
     {
         return $this->belongsTo(Event::class);
     }
 
+    /**
+     * Cek apakah payment sudah sukses
+     */
     public function isPaid(): bool
     {
         return in_array($this->transaction_status, [
             'settlement',
             'capture',
-        ]);
+        ], true);
     }
 }
