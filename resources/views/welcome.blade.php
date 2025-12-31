@@ -645,6 +645,34 @@
             });
         @endif
     </script>
+    </section>
+    <section class="w-full px-6 relative z-20 -mb-32 md:-mb-48 mt-24">
+        <div class="container mx-auto max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row text-gray-800">
+            
+            <div class="w-full md:w-1/2 h-64 md:h-96 relative">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" 
+                     alt="Contact Us" 
+                     class="absolute inset-0 w-full h-full object-cover">
+            </div>
+
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-left">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                    Apply for <span class="text-rose-500">admission?</span>
+                </h3>
+                <p class="text-gray-500 text-sm mb-8 leading-relaxed">
+                    A place to provide students with enough knowledge and skills in a complex world. 
+                    Are you looking for exceptional education experience?
+                    Eduvet might be the place for you.
+                </p>
+                <div>
+                    <a href="#" class="inline-block px-8 py-3 bg-rose-600 text-white font-bold text-sm rounded shadow-lg hover:bg-rose-700 transition-colors">
+                        CONTACT US
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
 </body>
-</section>
+
 </x-app-layout>

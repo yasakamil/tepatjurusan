@@ -225,6 +225,62 @@
             </div>
 
         </section>
+
+        <div class="w-full max-w-[1318px] mx-auto px-6 md:px-8 lg:px-12 pt-16">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <p class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-3 underline decoration-brand-purple/30 underline-offset-4">
+                Available Courses
+            </p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
+                Take a look at <span class="text-brand-purple">the courses</span> we offer.
+            </h2>
+        </div>
+
+        <div class="max-w-4xl mx-auto divide-y divide-gray-100 mb-20">
+            <div class="group py-8 flex flex-col md:flex-row gap-4 md:gap-10 items-start md:items-center hover:bg-gray-50/50 transition-colors rounded-lg px-4">
+                <div class="text-5xl md:text-6xl font-black text-transparent select-none transition-all duration-300 group-hover:tracking-widest"
+                     style="-webkit-text-stroke: 1px #8b5cf6;">01</div>
+                <div class="flex-1">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Psychology</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">We focus on understanding human behavior, mental processes, and emotional patterns.</p>
+                </div>
+            </div>
+            <div class="group py-8 flex flex-col md:flex-row gap-4 md:gap-10 items-start md:items-center hover:bg-gray-50/50 transition-colors rounded-lg px-4">
+                <div class="text-5xl md:text-6xl font-black text-transparent select-none transition-all duration-300 group-hover:tracking-widest"
+                     style="-webkit-text-stroke: 1px #8b5cf6;">02</div>
+                <div class="flex-1">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Sociology</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">We concentrate on exploring social structures, interactions, and dynamics.</p>
+                </div>
+            </div>
+            <div class="group py-8 flex flex-col md:flex-row gap-4 md:gap-10 items-start md:items-center hover:bg-gray-50/50 transition-colors rounded-lg px-4">
+                <div class="text-5xl md:text-6xl font-black text-transparent select-none transition-all duration-300 group-hover:tracking-widest"
+                     style="-webkit-text-stroke: 1px #8b5cf6;">03</div>
+                <div class="flex-1">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Political Science</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">We focus on understanding political systems, public policies, and governance.</p>
+                </div>
+            </div>
+            <div class="group py-8 flex flex-col md:flex-row gap-4 md:gap-10 items-start md:items-center hover:bg-gray-50/50 transition-colors rounded-lg px-4">
+                <div class="text-5xl md:text-6xl font-black text-transparent select-none transition-all duration-300 group-hover:tracking-widest"
+                     style="-webkit-text-stroke: 1px #8b5cf6;">04</div>
+                <div class="flex-1">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Anthropology</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">We concentrate on studying human cultures, societies, and behaviors.</p>
+                </div>
+            </div>
+            <div class="group py-8 flex flex-col md:flex-row gap-4 md:gap-10 items-start md:items-center hover:bg-gray-50/50 transition-colors rounded-lg px-4 border-b border-gray-100">
+                <div class="text-5xl md:text-6xl font-black text-transparent select-none transition-all duration-300 group-hover:tracking-widest"
+                     style="-webkit-text-stroke: 1px #8b5cf6;">05</div>
+                <div class="flex-1">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Economics</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">We focus on analyzing economic systems, markets, and issues.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
     </div>
     
 </x-app-layout>
