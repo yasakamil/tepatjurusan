@@ -68,4 +68,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
     });
 
-    
+    document.addEventListener('DOMContentLoaded', function () {
+            const countdowns = document.querySelectorAll('[data-countdown]');
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                
+                countdowns.forEach(timer => {
+                    const endTime = new Date(timer.dataset.countdown).getTime();
+                    const distance = endTime - now;
+                    
+                    if (distance < 0) {
+                        timer.innerHTML = "Expired";
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Format biar selalu 2 digit (09, 08, dst)
+                    timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                });
+            }, 1000);
+        });

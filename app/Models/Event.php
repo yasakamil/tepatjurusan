@@ -23,6 +23,12 @@ class Event extends Model
         'status',
     ];
 
+    protected $casts = [
+    'start_datetime' => 'datetime',
+    'end_datetime' => 'datetime',
+    'discount_end_time' => 'datetime',
+];
+
     protected static function booted()
     {
         static::creating(function ($event) {

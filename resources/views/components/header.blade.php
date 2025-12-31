@@ -17,7 +17,7 @@
     </div>
 
     <nav class="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 relative z-10">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-12 h-16 md:h-20 flex justify-between items-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-6 xl:px-12 h-16 md:h-20 flex justify-between items-center">
             
             <a href="/" class="flex-shrink-0 flex items-center gap-2">
                 <img src="{{ asset('images/TEPAT JURUSAN HITAM 1.png') }}" 
@@ -25,41 +25,54 @@
                      class="h-8 md:h-10 w-auto object-contain">
             </a>
 
-            <div class="hidden lg:flex items-center gap-8 font-bold text-sm uppercase tracking-wider text-gray-500">
-                <a href="/" class="text-brand-purple transition-colors relative group">
+            <div class="hidden lg:flex items-center gap-5 xl:gap-8 font-bold text-xs xl:text-sm uppercase tracking-wider">
+                
+                <a href="/" 
+                   class="{{ request()->is('/') || request()->routeIs('welcome') ? 'text-brand-purple' : 'text-gray-500 hover:text-brand-purple' }} transition-colors relative group">
                     Home.
-                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple scale-x-100 transition-transform"></span>
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple transition-transform {{ request()->is('/') || request()->routeIs('welcome') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 origin-left' }}"></span>
                 </a>
-                <a href="#" class="hover:text-brand-purple transition-colors duration-300 relative group">
+
+                <a href="{{ route('events.index') }}" 
+                   class="{{ request()->routeIs('events.*') ? 'text-brand-purple' : 'text-gray-500 hover:text-brand-purple' }} transition-colors duration-300 relative group">
                     Events.
-                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple transition-transform {{ request()->routeIs('events.*') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 origin-left' }}"></span>
                 </a>
-                <a href="#" class="hover:text-brand-purple transition-colors duration-300 relative group">
+
+                <a href="{{ route('articles.index') }}" 
+                   class="{{ request()->routeIs('articles.*') ? 'text-brand-purple' : 'text-gray-500 hover:text-brand-purple' }} transition-colors duration-300 relative group">
+                    Articles.
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple transition-transform {{ request()->routeIs('articles.*') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 origin-left' }}"></span>
+                </a>
+
+                <a href="{{ route('about.index') }}" 
+                class="{{ request()->routeIs('about.*') ? 'text-brand-purple' : 'text-gray-500 hover:text-brand-purple' }} transition-colors duration-300 relative group">
                     About Us.
-                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple transition-transform {{ request()->routeIs('about.*') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 origin-left' }}"></span>
                 </a>
-                <a href="#" class="hover:text-brand-purple transition-colors duration-300 relative group">
+
+                <a href="#" class="text-gray-500 hover:text-brand-purple transition-colors duration-300 relative group">
                     Contact.
                     <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                 </a>
             </div>
 
-            <div class="hidden lg:flex items-center gap-4">
+            <div class="hidden lg:flex items-center gap-3 xl:gap-4">
                 @if(Auth::guard('member')->check())
-                    <span class="text-sm font-bold text-gray-700">
+                    <span class="text-xs xl:text-sm font-bold text-gray-700">
                         Hi, {{ Auth::guard('member')->user()->nama }}
                     </span>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="px-5 py-2.5 border border-red-200 text-red-500 font-bold text-sm rounded hover:bg-red-50 transition-all duration-300">
+                        <button type="submit" class="px-4 py-2 xl:px-5 xl:py-2.5 border border-red-200 text-red-500 font-bold text-xs xl:text-sm rounded hover:bg-red-50 transition-all duration-300">
                             LOGOUT
                         </button>
                     </form>
                 @else
-                    <a href="{{ route('register') }}" class="px-7 py-2.5 bg-brand-teal text-white font-bold text-sm rounded shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                    <a href="{{ route('register') }}" class="px-5 py-2 xl:px-7 xl:py-2.5 bg-brand-teal text-white font-bold text-xs xl:text-sm rounded shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap">
                         SIGN UP
                     </a>
-                    <a href="{{ route('login') }}" class="px-7 py-2.5 border border-gray-200 text-gray-500 font-bold text-sm rounded hover:border-brand-teal hover:text-brand-teal hover:bg-teal-50 transition-all duration-300">
+                    <a href="{{ route('login') }}" class="px-5 py-2 xl:px-7 xl:py-2.5 border border-gray-200 text-gray-500 font-bold text-xs xl:text-sm rounded hover:border-brand-teal hover:text-brand-teal hover:bg-teal-50 transition-all duration-300 whitespace-nowrap">
                         SIGN IN
                     </a>
                 @endif
@@ -100,9 +113,21 @@
 
                         <div class="flex-1 overflow-y-auto py-6 px-6">
                             <nav class="flex flex-col space-y-6">
-                                <a href="/" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Home</a>
-                                <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Events</a>
-                                <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">About Us</a>
+                                <a href="/" class="text-xl font-bold {{ request()->is('/') || request()->routeIs('welcome') ? 'text-brand-purple' : 'text-gray-900 hover:text-brand-purple' }}">
+                                    Home
+                                </a>
+                                
+                                <a href="{{ route('events.index') }}" class="text-xl font-bold {{ request()->routeIs('events.*') ? 'text-brand-purple' : 'text-gray-900 hover:text-brand-purple' }}">
+                                    Events
+                                </a>
+
+                                <a href="{{ route('articles.index') }}" class="text-xl font-bold {{ request()->routeIs('articles.*') ? 'text-brand-purple' : 'text-gray-900 hover:text-brand-purple' }}">
+                                    Articles
+                                </a>
+
+                                <a href="{{ route('about.index') }}" class="text-xl font-bold {{ request()->routeIs('about.*') ? 'text-brand-purple' : 'text-gray-900 hover:text-brand-purple' }}">
+                                    About Us
+                                </a>
                                 <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Contact</a>
                                 <hr class="border-gray-100 my-4">
                                 

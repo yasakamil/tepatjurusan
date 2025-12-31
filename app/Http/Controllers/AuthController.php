@@ -9,24 +9,22 @@ use App\Models\AccountRegistration;
 
 class AuthController extends Controller
 {
-    // Tampilkan form register
+    // REGISTER FORM
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    // Proses register
+    // PROSES REGISTER
     public function register(Request $request)
     {
-        // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:account_registrations,email',
             'no_telfon' => 'required|string|max:20',
-            'password' => 'required|string|min:6|confirmed', // perlu field password_confirmation
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
-        // Buat user baru
         $user = AccountRegistration::create([
             'nama' => $request->nama,
             'email' => $request->email,
@@ -35,19 +33,18 @@ class AuthController extends Controller
             'status' => 'pending',
         ]);
 
-        // Login otomatis setelah register
-        Auth::login($user);
+        Auth::guard('member')->login($user);
 
-        return redirect()->route('/dashboard')->with('success', 'Register berhasil!');
+        return redirect()->route('home')->with('success', 'Register berhasil!');
     }
 
-    // Tampilkan form login
+    // LOGIN FORM
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Proses login
+    // PROSES LOGIN
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -55,9 +52,12 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // keamanan session
-            return redirect()->intended('/dashboard');
+
+        if (Auth::guard('member')->attempt($credentials)) {
+            $request->session()->regenerate();
+            
+
+            return redirect()->intended('/'); 
         }
 
         return back()->withErrors([
@@ -65,13 +65,15 @@ class AuthController extends Controller
         ]);
     }
 
-    // Logout
+    // LOGOUT
     public function logout(Request $request)
     {
-        Auth::logout();
+        // Logout spesifik member
+        Auth::guard('member')->logout();
+        
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }
