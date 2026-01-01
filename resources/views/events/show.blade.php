@@ -75,12 +75,20 @@
                             Sisa kuota: <span class="font-semibold text-gray-900">{{ $event->quota }}</span> orang
                         </div>
 
-                        @if($event->status == 'open' && $event->quota > 0)
-                            <button class="w-full bg-indigo-600 text-white py-3 px-4 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
-                                Daftar Sekarang
-                            </button>
+                        @if($event->status == 'published' && $event->quota > 0 && now() < $event->end_datetime)
+                            <a href="{{ route('registration.create') }}" 
+                                class="block w-full text-center bg-indigo-600 text-white py-3 px-4 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                                    Daftar Sekarang
+                            </a>
                         @else
                              <button disabled class="w-full bg-gray-300 text-gray-500 py-3 px-4 rounded-xl font-bold cursor-not-allowed">
+                                @if($event->quota <= 0)
+                                    Kuota Penuh
+                                @elseif(now() >= $event->end_datetime)
+                                    Event Selesai
+                                @else
+                                    Pendaftaran Tutup
+                                @endif
                                 Pendaftaran Tutup
                             </button>
                         @endif
