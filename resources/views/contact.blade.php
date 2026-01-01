@@ -2,8 +2,8 @@
     
     <div class="min-h-screen bg-white flex items-center justify-center p-4 md:p-8">
 
-        <div class="w-full max-w-6xl rounded-[3rem] shadow-2xl overflow-hidden relative bg-cover bg-center flex flex-col md:flex-row"
-             style="background-image: url('{{ asset('images/bgcontact.png') }}'); min-height: 600px;">
+        <div class="w-full max-w-8xl rounded-[3rem] shadow-2xl overflow-hidden relative bg-cover bg-center flex flex-col md:flex-row"
+             style="background-image: url('{{ asset('images/bgcontact.png') }}'); min-height: 900px;">
             
             <div class="absolute inset-0 bg-brand-purple/20 mix-blend-multiply pointer-events-none"></div>
 
@@ -84,4 +84,104 @@
             </div>
         </div>
     </div>
+
+    <section class="w-full py-20 bg-white font-sans overflow-hidden">
+    
+    <style>
+        @keyframes infinite-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+        /* Kecepatan 40s biar agak pelan karena gambarnya besar-besar */
+        .animate-infinite-scroll-slow {
+            animation: infinite-scroll 40s linear infinite;
+        }
+        .animate-infinite-scroll {
+            animation: infinite-scroll 25s linear infinite;
+        }
+    </style>
+
+
+    <div class="w-full mb-20 lg:mb-24 relative overflow-hidden">
+        
+        <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_150px,_black_calc(100%-150px),transparent_100%)] py-8">
+            
+            <ul class="flex items-center gap-6 md:gap-8 animate-infinite-scroll-slow px-4">
+                
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[350px] md:h-[450px] w-full rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus TALL">
+                    </div>
+                </li>
+
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[250px] md:h-[300px] w-full rounded-xl overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus SHORT">
+                    </div>
+                </li>
+
+                 <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[350px] md:h-[450px] w-full rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus TALL">
+                    </div>
+                </li>
+
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[250px] md:h-[300px] w-full rounded-xl overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus SHORT">
+                    </div>
+                </li>
+
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[350px] md:h-[450px] w-full rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus TALL">
+                    </div>
+                </li>
+
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[250px] md:h-[300px] w-full rounded-xl overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus SHORT">
+                    </div>
+                </li>
+            </ul>
+
+
+            <ul class="flex items-center gap-6 md:gap-8 animate-infinite-scroll-slow px-4" aria-hidden="true">
+               <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[350px] md:h-[450px] w-full rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus TALL">
+                    </div>
+                </li>
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[250px] md:h-[300px] w-full rounded-xl overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus SHORT">
+                    </div>
+                </li>
+                 <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[350px] md:h-[450px] w-full rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus TALL">
+                    </div>
+                </li>
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[250px] md:h-[300px] w-full rounded-xl overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus SHORT">
+                    </div>
+                </li>
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[350px] md:h-[450px] w-full rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus TALL">
+                    </div>
+                </li>
+                <li class="flex-shrink-0 w-[280px] md:w-[350px]">
+                    <div class="h-[250px] md:h-[300px] w-full rounded-xl overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover" alt="Campus SHORT">
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+
+    
+</section>
 </x-app-layout>

@@ -69,3 +69,14 @@
         @apply px-6 py-3 rounded-full text-white font-semibold tracking-wide hover:bg-white/20 active:scale-95 transition-all flex items-center gap-2 mx-auto;
     }
 }
+
+@keyframes marquee-infinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Geser setengah panjang total */
+        }
+        .animate-marquee-text {
+            display: flex;
+            width: fit-content;
+            /* Ubah 20s jadi angka lain buat atur kecepatan */
+            animation: marquee-infinite 20s linear infinite; 
+        }

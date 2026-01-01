@@ -535,19 +535,50 @@
     </div>
 </section>
 
-<section class="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-gray-900">
+<section class="relative w-full h-screen overflow-hidden bg-gray-900">
+
     <video
-        class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
-        autoplay
-        muted
-        loop
-        playsinline
-        poster="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1920&auto=format&fit=crop" >
+        class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none z-0"
+        autoplay muted loop playsinline
+        poster="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1920&auto=format&fit=crop">
         <source src="{{ asset('videos/campus.mp4') }}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
-    <div class="absolute inset-0 bg-black/20"></div>
-    </section>
+    
+    <div class="absolute inset-0 bg-black/40 z-10"></div>
+    <div class="absolute top-0 left-0 w-full z-20 pt-6 md:pt-6 overflow-hidden pointer-events-none">
+        
+        <div class="animate-marquee-text whitespace-nowrap">
+            
+            <div class="flex items-center">
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+            </div>
+
+            <div class="flex items-center">
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <section class="w-full py-20 bg-white">
     <div class="container mx-auto px-6 text-center">
@@ -651,7 +682,7 @@
                     Eduvet might be the place for you.
                 </p>
                 <div>
-                    <a href="#" class="inline-block px-8 py-3 bg-rose-600 text-white font-bold text-sm rounded shadow-lg hover:bg-rose-700 transition-colors">
+                    <a href="{{ route('contact.index') }}" class="inline-block px-8 py-3 bg-rose-600 text-white font-bold text-sm rounded shadow-lg hover:bg-rose-700 transition-colors">
                         CONTACT US
                     </a>
                 </div>
