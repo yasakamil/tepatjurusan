@@ -120,10 +120,13 @@
                         </div>
 
                         @if($event->status == 'published' && $event->quota > 0 && now() < $event->end_datetime)
-                            <a href="{{ route('registration.create') }}" 
-                                class="block w-full text-center bg-indigo-600 text-white py-3 px-4 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
-                                    Daftar Sekarang
-                            </a>
+                            <button
+                                id="btn-buy"
+                                data-event-id="{{ $event->id }}"
+                                class="w-full bg-indigo-600 text-white py-3 px-4 rounded-xl font-bold
+                                       hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                                Daftar Sekarang
+                            </button>
                         @else
                              <button disabled class="w-full bg-gray-300 text-gray-500 py-3 px-4 rounded-xl font-bold cursor-not-allowed">
                                 @if($event->quota <= 0)
