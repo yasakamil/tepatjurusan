@@ -26,7 +26,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="col-span-1 md:col-span-2">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
-                                <input type="text" name="nama_lengkap" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none" placeholder="Sesuai KTP / Kartu Pelajar" required value="{{ old('nama_lengkap') }}">
+                                <input type="text" name="nama_lengkap" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none" placeholder="Sesuai KTP / Kartu Pelajar" required value="{{ old('nama_lengkap', $account->nama) }}">
                             </div>
 
                             <div>
@@ -40,11 +40,11 @@
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">No. HP / WhatsApp</label>
-                                <input type="number" name="no_hp" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none" placeholder="0812..." required value="{{ old('no_hp') }}">
+                                <input type="number" name="no_hp" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none" placeholder="0812..." required value="{{ old('no_hp', $account->no_telfon) }}">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Email Aktif</label>
-                                <input type="email" name="email" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none" placeholder="email@contoh.com" required value="{{ old('email') }}">
+                                <input type="email" name="email" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none" placeholder="email@contoh.com" required value="{{ old('email', $account->email) }}">
                             </div>
 
                             <div>

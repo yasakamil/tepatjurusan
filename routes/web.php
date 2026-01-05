@@ -10,6 +10,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegistrationController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 // Landing Page
 Route::get('/', [LandingController::class, 'index'])->name('home');
@@ -41,3 +43,30 @@ Route::get('/payment/success', function () {
     return view('payments.success');
 })->name('events.success');
 Route::post('/midtrans/webhook', [MidtransWebhookController::class, 'handle']);
+
+//Email Routes
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth:member')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    // OPTIONAL: update status
+    $request->user()->update([
+        'status' => 'approved',
+    ]);
+
+    return redirect()->route('registration.create');
+})->middleware(['auth:member', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Link verifikasi telah dikirim ulang.');
+})->middleware(['auth:member', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/event-registration', [RegistrationController::class, 'create'])
+    ->middleware(['auth:member', 'verified'])
+    ->name('registration.create');
+

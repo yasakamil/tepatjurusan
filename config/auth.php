@@ -75,6 +75,13 @@ return [
             'model' => App\Models\AccountRegistration::class,
         ],
 
+        'guards' => [
+            'member' => [
+            'driver' => 'session',
+            'provider' => 'account_registrations',
+        ],
+],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

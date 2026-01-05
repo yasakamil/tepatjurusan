@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\AccountRegistration;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -13,6 +14,12 @@ class AuthController extends Controller
     public function showRegisterForm()
     {
         return view('auth.register');
+    }
+
+    // LOGIN FORM ✅ (INI YANG TADI HILANG)
+    public function showLoginForm()
+    {
+        return view('auth.login');
     }
 
     // PROSES REGISTER
@@ -35,12 +42,10 @@ class AuthController extends Controller
 
         Auth::guard('member')->login($user);
 
-            return redirect()->route('registration.create')->with('success', 'Akun berhasil dibuat! Silakan lanjut isi formulir pendaftaran.');    }
+        // Kirim email verifikasi
+        event(new Registered($user));
 
-    // LOGIN FORM
-    public function showLoginForm()
-    {
-        return view('auth.login');
+        return redirect()->route('verification.notice');
     }
 
     // PROSES LOGIN
@@ -51,12 +56,21 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-
         if (Auth::guard('member')->attempt($credentials)) {
-            $request->session()->regenerate();
-            
 
-            return redirect()->intended('/'); 
+            $user = Auth::guard('member')->user();
+
+            // Cegah login jika belum verifikasi
+            if (!$user->hasVerifiedEmail()) {
+                Auth::guard('member')->logout();
+
+                return back()->withErrors([
+                    'email' => 'Email belum diverifikasi. Silakan cek email.',
+                ]);
+            }
+
+            $request->session()->regenerate();
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
@@ -67,9 +81,7 @@ class AuthController extends Controller
     // LOGOUT
     public function logout(Request $request)
     {
-        // Logout spesifik member
         Auth::guard('member')->logout();
-        
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

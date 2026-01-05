@@ -20,7 +20,9 @@ class AccountRegistrationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserPlus;
 
-    protected static ?string $navigationLabel = 'Account Registrations';
+    protected static ?string $navigationLabel = 'Account';
+     protected static ?string $pluralLabel = 'Account';
+    protected static ?string $label = 'Account';
 
     protected static ?string $recordTitleAttribute = 'nama';
 

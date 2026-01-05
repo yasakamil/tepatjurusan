@@ -8,4 +8,5 @@ use Filament\Resources\Pages\ListRecords;
 class ListAccountRegistrations extends ListRecords
 {
     protected static string $resource = AccountRegistrationResource::class;
+    protected static ?string $navigationLabel = 'Account';
 }
