@@ -69,4 +69,3 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/event-registration', [RegistrationController::class, 'create'])
     ->middleware(['auth:member', 'verified'])
     ->name('registration.create');
-
