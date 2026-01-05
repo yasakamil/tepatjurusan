@@ -29,19 +29,15 @@ class AccountRegistrationsTable
 
                 Tables\Columns\BadgeColumn::make('status')
                     ->colors([
-                        'success' => 'active',
+                        'success' => 'approved',
                         'warning' => 'pending',
-                        'danger'  => 'inactive',
                     ]),
 
-                /**
-                 * EVENT + STATUS PEMBAYARAN (PIVOT)
-                 */
                 Tables\Columns\TextColumn::make('event_payment_status')
                     ->label('Events')
                     ->state(function ($record) {
                         return $record->events->map(function ($event) {
-                            return "Event {$event->id} — {$event->pivot->payment_status}";
+                            return "Event {$event->slug}";
                         })->implode("\n");
                     })
                     ->listWithLineBreaks()
@@ -58,9 +54,8 @@ class AccountRegistrationsTable
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
-                        'active' => 'Active',
+                        'approved' => 'Approved',
                         'pending' => 'Pending',
-                        'inactive' => 'Inactive',
                     ]),
                 ]);
 

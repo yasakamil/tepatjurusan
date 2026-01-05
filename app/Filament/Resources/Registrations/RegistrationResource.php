@@ -33,6 +33,8 @@ class RegistrationResource extends Resource
         return RegistrationsTable::configure($table);
     }
 
+    
+    
     public static function getPages(): array
     {
         return [

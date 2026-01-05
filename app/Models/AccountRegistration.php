@@ -33,7 +33,7 @@ class AccountRegistration extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * 🔥 OVERRIDE: kolom verifikasi email
+     * OVERRIDE: kolom verifikasi email
      */
     public function getEmailVerifiedAtColumn()
     {
@@ -41,7 +41,7 @@ class AccountRegistration extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * 🔥 OVERRIDE: cek apakah sudah verifikasi
+     * OVERRIDE: cek apakah sudah verifikasi
      */
     public function hasVerifiedEmail()
     {
@@ -49,7 +49,7 @@ class AccountRegistration extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * 🔥 OVERRIDE: SIMPAN verifikasi ke verified_at
+     * OVERRIDE: SIMPAN verifikasi ke verified_at
      */
     public function markEmailAsVerified()
     {
@@ -96,5 +96,12 @@ class AccountRegistration extends Authenticatable implements MustVerifyEmail
     public function getRememberTokenName()
     {
         return null;
+    }
+        /**
+     * Accessor untuk mendapatkan nama_event dari relasi events
+     */
+    public function getNamaEventAttribute(): string
+    {
+        return $this->events->pluck('slug')->implode("\n");
     }
 }

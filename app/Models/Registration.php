@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Registration extends Model
 {
-    protected $table = 'registrations';
-
     protected $fillable = [
         'account_registration_id',
-
         'nama_lengkap',
         'tempat_lahir',
         'tanggal_lahir',
@@ -21,13 +18,11 @@ class Registration extends Model
         'alamat_domisili',
         'asal_sekolah',
         'kelas_jenjang',
-
         'jurusan_1',
         'jurusan_2',
         'jurusan_3',
         'jurusan_4',
         'jurusan_5',
-
         'universitas_1',
         'universitas_2',
         'universitas_3',
@@ -41,13 +36,9 @@ class Registration extends Model
 
     /**
      * Relasi ke AccountRegistration
-     * registrations.account_registration_id → account_registrations.id
      */
     public function accountRegistration(): BelongsTo
     {
-        return $this->belongsTo(
-            AccountRegistration::class,
-            'account_registration_id'
-        );
+        return $this->belongsTo(AccountRegistration::class);
     }
 }

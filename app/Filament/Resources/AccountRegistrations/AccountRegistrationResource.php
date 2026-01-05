@@ -41,7 +41,7 @@ class AccountRegistrationResource extends Resource
         return [];
     }
     
-
+    
     public static function getPages(): array
     {
         return [

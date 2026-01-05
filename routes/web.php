@@ -12,6 +12,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ExportController;
 
 // Landing Page
 Route::get('/', [LandingController::class, 'index'])->name('home');
@@ -68,3 +69,13 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/event-registration', [RegistrationController::class, 'create'])
     ->middleware(['auth:member', 'verified'])
     ->name('registration.create');
+
+//Export Routes
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/export/registrations/form', [ExportController::class, 'exportRegistrationForm'])
+        ->name('export.registrations.form');
+    
+    Route::get('/export/registrations', [ExportController::class, 'exportRegistrations'])
+        ->name('export.registrations');
+});
