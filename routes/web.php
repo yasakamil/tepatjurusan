@@ -8,6 +8,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RegistrationController;
 
 Route::get('/', [LandingController::class, 'index'])->name('home');
 
@@ -19,6 +21,11 @@ Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('even
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about.index');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/event-registration', [RegistrationController::class, 'create'])->name('registration.create');
+Route::post('/event-registration', [RegistrationController::class, 'store'])->name('registration.store');
+
 Route::get('/payment/success', function () {
     return view('payments.success');
 })->name('events.success');

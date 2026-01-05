@@ -1,79 +1,60 @@
 <x-app-layout>
-    <section class="relative min-h-screen flex items-end justify-center overflow-hidden font-sans bg-bg-left">
-        
-        <div class="w-full max-w-[1318px] mx-auto relative min-h-screen flex items-center">
+    <section class="relative min-h-[100dvh] flex flex-col lg:flex-row items-end lg:items-center justify-start lg:justify-center overflow-hidden font-sans bg-white">
+    
+    <div class="absolute inset-0 w-full h-full z-0">
+        <img src="{{ asset('images/heromobile.png') }}" alt="Background Mobile" class="w-full h-full object-cover md:hidden">
+        <img src="{{ asset('images/herotablet.png') }}" alt="Background Tablet" class="hidden md:block lg:hidden w-full h-full object-cover">
+        <img src="{{ asset('images/herolaptop.png') }}" alt="Background Laptop" class="hidden lg:block xl:hidden w-full h-full object-cover">
+        <img src="{{ asset('images/herodesktop.png') }}" alt="Background Desktop" class="hidden xl:block w-full h-full object-cover">
+    </div>
 
-            <div class="hidden lg:block absolute top-0 bottom-0 right-0 w-1/2 bg-bg-right z-0">
-                <div class="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-white rounded-full opacity-100 shadow-sm"></div>
+    <div class="w-full max-w-[1440px] mx-auto relative z-10 px-6 md:px-8 lg:px-12 h-full flex flex-col lg:flex-row">
+
+        <div class="w-full lg:w-[70%] pt-12 pb-8 lg:py-0 flex flex-col justify-start lg:justify-center text-left z-30">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-white/80 backdrop-blur-sm shadow-sm mb-4 lg:mb-8 mx-0 w-fit">
+                <span class="w-2 h-2 rounded-full bg-brand-purple animate-pulse flex-shrink-0"></span>
+                <span class="text-[10px] md:text-xs font-bold text-brand-purple/80 uppercase tracking-widest underline decoration-brand-purple/30 underline-offset-4 whitespace-nowrap">
+                    Meet with the #01 Course in Indonesia
+                </span>
             </div>
 
-            <div class="lg:hidden absolute bottom-0 left-0 right-0 h-[40%] bg-bg-right z-0 rounded-t-[3rem] mx-4">
-                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white rounded-full opacity-100 shadow-sm"></div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold leading-[1.1] text-gray-900 mb-4 lg:mb-8 tracking-wide w-full lg:w-[130%] 2xl:w-[140%] relative text-left">
+                Most reputed <br>
+                educational <span class="text-brand-purple">bootcamp</span> <br class="hidden lg:block">
+                in Indonesia
+            </h1>
+
+            <div class="flex justify-start mb-8 lg:mb-20">
+                <a href="{{ route('register') }}" class="inline-block px-8 lg:px-10 py-3 lg:py-4 bg-brand-teal text-white font-bold text-sm rounded shadow-lg shadow-brand-teal/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    SIGN UP NOW
+                </a>
             </div>
 
-            <div class="absolute top-0 left-0 bottom-0 w-1/2 z-0 hidden lg:flex items-center justify-center opacity-10 pointer-events-none">
-                <img src="{{ asset('images/tepatjurusantransparan.png') }}" 
-                     alt="Watermark" 
-                     class="w-[80%] max-w-[600px] object-contain rotate-12">
-            </div>
-
-
-            <div class="relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 px-6 md:px-8 lg:px-12 pointer-events-none">
-                
-                <div class="pt-24 lg:pt-0 text-center lg:text-left lg:pr-10 pointer-events-auto"> 
-                    
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-200 bg-white/60 backdrop-blur-sm shadow-sm mb-6 lg:mb-8 mx-auto lg:mx-0">
-                        <span class="w-2 h-2 rounded-full bg-brand-purple animate-pulse"></span>
-                        <span class="text-[10px] md:text-xs font-bold text-brand-purple/80 uppercase tracking-widest underline decoration-brand-purple/30 underline-offset-4">
-                            Meet with the #01 Course in Indonesia
-                        </span>
-                    </div>
-
-                    <h1 class="text-4xl md:text-5xl lg:text-5xl 2xl:text-[64px] font-bold leading-[1.1] text-gray-900 mb-6 lg:mb-8 tracking-wide w-full lg:w-[130%] 2xl:w-[140%]">
-                        Most reputed <br>
-                        educational <span class="text-brand-purple">bootcamp</span> <br>
-                        in Indonesia
-                    </h1>
-
-                    <div class="flex justify-center lg:justify-start mb-12 lg:mb-20">
-                        <a href="#" class="inline-block px-8 lg:px-10 py-3 lg:py-4 bg-brand-teal text-white font-bold text-sm rounded shadow-lg shadow-brand-teal/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                            SIGN UP NOW
-                        </a>
-                    </div>
-
-                    <div class="w-full max-w-md lg:max-w-full overflow-hidden relative mx-auto lg:mx-0">
-                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center lg:text-left">
-                            Trusted Partners
-                        </p>
-                        <div class="flex flex-nowrap relative [mask-image:_linear-gradient(to_right,transparent_0,_black_20px,_black_calc(100%-20px),transparent_100%)]">
-                            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-6 [&_img]:max-w-none animate-infinite-scroll">
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full border-4 border-orange-500"></div> LogoA</div></li>
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-blue-600 skew-x-12"></div> CompanyB</div></li>
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full bg-green-500 border-t-4 border-white"></div> StartupC</div></li>
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-brand-purple rounded-lg rotate-45"></div> TechD</div></li>
-                            </ul>
-                            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-6 [&_img]:max-w-none animate-infinite-scroll" aria-hidden="true">
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full border-4 border-orange-500"></div> LogoA</div></li>
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-blue-600 skew-x-12"></div> CompanyB</div></li>
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full bg-green-500 border-t-4 border-white"></div> StartupC</div></li>
-                                <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-brand-purple rounded-lg rotate-45"></div> TechD</div></li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="w-full max-w-md lg:max-w-lg xl:max-w-xl overflow-hidden relative mx-0">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 text-left">
+                    Trusted Partners
+                </p>
+                <div class="flex flex-nowrap relative [mask-image:_linear-gradient(to_right,transparent_0,_black_20px,_black_calc(100%-20px),transparent_100%)]">
+                    <ul class="flex items-center justify-start [&_li]:mx-6 [&_img]:max-w-none animate-infinite-scroll">
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full border-4 border-orange-500"></div> LogoA</div></li>
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-blue-600 skew-x-12"></div> CompanyB</div></li>
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full bg-green-500 border-t-4 border-white"></div> StartupC</div></li>
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-brand-purple rounded-lg rotate-45"></div> TechD</div></li>
+                    </ul>
+                    <ul class="flex items-center justify-start [&_li]:mx-6 [&_img]:max-w-none animate-infinite-scroll" aria-hidden="true">
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full border-4 border-orange-500"></div> LogoA</div></li>
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-blue-600 skew-x-12"></div> CompanyB</div></li>
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 rounded-full bg-green-500 border-t-4 border-white"></div> StartupC</div></li>
+                        <li><div class="flex items-center gap-2 font-bold text-gray-400 text-lg"><div class="w-8 h-8 bg-brand-purple rounded-lg rotate-45"></div> TechD</div></li>
+                    </ul>
                 </div>
-
-                <div></div>
-            </div>
-
-
-            <div class="absolute bottom-0 w-full lg:w-1/2 right-0 z-10 flex justify-center pointer-events-none">
-                <img src="{{ asset('images/image 23.png') }}" 
-                     alt="Happy Student" 
-                     class="w-auto h-[55vh] md:h-[60vh] lg:h-[85vh] 2xl:h-[90vh] object-contain drop-shadow-2xl translate-y-0">
             </div>
 
         </div>
-    </section>
+
+    </div>
+</section>
 
     <section class="w-full py-20 bg-white font-sans">
     <div class="w-full max-w-[1318px] mx-auto px-6 md:px-8 lg:px-12">
@@ -516,52 +497,88 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
 
-    @forelse($articles as $article)
-        <article class="group cursor-pointer flex flex-col h-full">
-            <div class="relative overflow-hidden rounded-lg mb-5">
-                <img src="{{ asset('storage/' . $article->thumbnail) }}" 
-                     alt="{{ $article->title }}" 
-                     class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
-                
-                <div class="absolute top-6 left-6 w-12 h-12 bg-brand-teal flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
-                    {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
+            @forelse($articles as $article)
+                <article class="group h-full">
+                    
+                    <a href="{{ route('articles.show', $article->slug) }}" class="flex flex-col h-full">
+                        
+                        <div class="relative overflow-hidden rounded-lg mb-5">
+                            <img src="{{ asset('storage/' . $article->thumbnail) }}" 
+                                 alt="{{ $article->title }}" 
+                                 class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            
+                            <div class="absolute top-6 left-6 w-12 h-12 bg-brand-teal flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+                                {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-snug group-hover:text-brand-purple transition-colors line-clamp-2">
+                                {{ $article->title }}
+                            </h3>
+                            <p class="text-sm text-gray-400 font-medium mt-auto">
+                                {{ $article->published_at->format('M d, Y') }} 
+                                <span class="mx-1">.</span> 
+                                {{ $article->read_time }}
+                            </p>
+                        </div>
+                    </a>
+
+                </article>
+            @empty
+                <div class="col-span-3 text-center py-10 text-gray-400">
+                    Belum ada berita terbaru.
                 </div>
-            </div>
+            @endforelse
 
-            <div class="flex flex-col flex-1">
-                <h3 class="text-xl font-bold text-gray-900 mb-2 leading-snug group-hover:text-brand-purple transition-colors line-clamp-2">
-                    {{ $article->title }}
-                </h3>
-                <p class="text-sm text-gray-400 font-medium mt-auto">
-                    {{ $article->published_at->format('M d, Y') }} 
-                    <span class="mx-1">.</span> 
-                    {{ $article->read_time }}
-                </p>
-            </div>
-        </article>
-    @empty
-        <div class="col-span-3 text-center py-10 text-gray-400">
-            Belum ada berita terbaru.
         </div>
-    @endforelse
-
-</div>
     </div>
 </section>
 
-<section class="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-gray-900">
+<section class="relative w-full h-screen overflow-hidden bg-gray-900">
+
     <video
-        class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
-        autoplay
-        muted
-        loop
-        playsinline
-        poster="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1920&auto=format&fit=crop" >
+        class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none z-0"
+        autoplay muted loop playsinline
+        poster="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1920&auto=format&fit=crop">
         <source src="{{ asset('videos/campus.mp4') }}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
-    <div class="absolute inset-0 bg-black/20"></div>
-    </section>
+    
+    <div class="absolute inset-0 bg-black/40 z-10"></div>
+    <div class="absolute top-0 left-0 w-full z-20 pt-6 md:pt-6 overflow-hidden pointer-events-none">
+        
+        <div class="animate-marquee-text whitespace-nowrap">
+            
+            <div class="flex items-center">
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+            </div>
+
+            <div class="flex items-center">
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+                <h2 class="text-[12vw] font-black uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] px-4">
+                    Latest Events &nbsp;
+                </h2>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <section class="w-full py-20 bg-white">
     <div class="container mx-auto px-6 text-center">
@@ -665,7 +682,7 @@
                     Eduvet might be the place for you.
                 </p>
                 <div>
-                    <a href="#" class="inline-block px-8 py-3 bg-rose-600 text-white font-bold text-sm rounded shadow-lg hover:bg-rose-700 transition-colors">
+                    <a href="{{ route('contact.index') }}" class="inline-block px-8 py-3 bg-rose-600 text-white font-bold text-sm rounded shadow-lg hover:bg-rose-700 transition-colors">
                         CONTACT US
                     </a>
                 </div>

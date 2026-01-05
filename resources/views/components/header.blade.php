@@ -51,9 +51,10 @@
                     <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple transition-transform {{ request()->routeIs('about.*') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 origin-left' }}"></span>
                 </a>
 
-                <a href="#" class="text-gray-500 hover:text-brand-purple transition-colors duration-300 relative group">
+                <a href="{{ route(name: 'contact.index') }}" 
+                class="{{ request()->routeIs('contact.*') ? 'text-brand-purple' : 'text-gray-500 hover:text-brand-purple' }} transition-colors duration-300 relative group">
                     Contact.
-                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-purple transition-transform {{ request()->routeIs('contact.*') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 origin-left' }}"></span>
                 </a>
             </div>
 
@@ -128,7 +129,11 @@
                                 <a href="{{ route('about.index') }}" class="text-xl font-bold {{ request()->routeIs('about.*') ? 'text-brand-purple' : 'text-gray-900 hover:text-brand-purple' }}">
                                     About Us
                                 </a>
-                                <a href="#" class="text-xl font-bold text-gray-900 hover:text-brand-purple">Contact</a>
+                                
+                                <a href="{{ route('contact.index') }}" class="text-xl font-bold {{ request()->routeIs('contact.*') ? 'text-brand-purple' : 'text-gray-900 hover:text-brand-purple' }}">
+                                    Contact Us
+                                </a>
+
                                 <hr class="border-gray-100 my-4">
                                 
                                 <div class="flex flex-col gap-4">
