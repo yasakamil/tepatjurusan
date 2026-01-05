@@ -92,7 +92,7 @@
                                 <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
                                     <h4 class="font-bold text-gray-700 mb-4 flex items-center gap-2">
                                         Pilihan {{ $i }} 
-                                        @if($i == 1) <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full ml-2">Wajib</span> @else <span class="text-xs text-gray-400 font-normal">(Opsional)</span> @endif
+                                        @if($i == 1 || $i == 2 || $i == 3) <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full ml-2">Wajib</span> @else <span class="text-xs text-gray-400 font-normal">(Opsional)</span> @endif
                                     </h4>
                                     
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

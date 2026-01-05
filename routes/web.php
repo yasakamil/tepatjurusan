@@ -11,10 +11,10 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegistrationController;
 
+// Landing Page
 Route::get('/', [LandingController::class, 'index'])->name('home');
 
-Route::post('/midtrans/webhook', [MidtransWebhookController::class, 'handle']);
-
+// Event & Article Routes
 Route::post('/events/{event}/buy', [PaymentController::class, 'create']);
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('events.show');
@@ -26,26 +26,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/event-registration', [RegistrationController::class, 'create'])->name('registration.create');
 Route::post('/event-registration', [RegistrationController::class, 'store'])->name('registration.store');
 
-Route::get('/payment/success', function () {
-    return view('payments.success');
-})->name('events.success');
-
-
-
-// Route::middleware('guest:member')->group(function () {
-//     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-//     Route::post('/register', [AuthController::class, 'register']);
-    
-//     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-//     Route::post('/login', [AuthController::class, 'login']);
-// });
-
-
-// Route::post('/logout', [AuthController::class, 'logout'])
-//     ->middleware('auth:member')
-//     ->name('logout');
-
-
+// Auth Routes
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
@@ -55,4 +36,8 @@ Route::get('/dashboard', function() {
     return view('dashboard');
 })->middleware('auth');
 
-
+//Payment Routes
+Route::get('/payment/success', function () {
+    return view('payments.success');
+})->name('events.success');
+Route::post('/midtrans/webhook', [MidtransWebhookController::class, 'handle']);
