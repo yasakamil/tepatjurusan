@@ -35,8 +35,7 @@ class AuthController extends Controller
 
         Auth::guard('member')->login($user);
 
-        return redirect()->route('home')->with('success', 'Register berhasil!');
-    }
+            return redirect()->route('registration.create')->with('success', 'Akun berhasil dibuat! Silakan lanjut isi formulir pendaftaran.');    }
 
     // LOGIN FORM
     public function showLoginForm()
