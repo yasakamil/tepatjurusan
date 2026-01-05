@@ -19,6 +19,10 @@ Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('even
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about.index');
+Route::get('/payment/success', function () {
+    return view('payments.success');
+})->name('events.success');
+
 
 
 // Route::middleware('guest:member')->group(function () {

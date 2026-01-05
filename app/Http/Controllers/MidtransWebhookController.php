@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use App\Models\User;
+// use App\Models\User; // Tidak lagi dibutuhkan jika logic User dihapus
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class MidtransWebhookController extends Controller
 {
@@ -63,10 +61,11 @@ class MidtransWebhookController extends Controller
         ]);
 
         /**
-         * 6. Jika pembayaran sukses
+         * 6. Jika pembayaran sukses (Settlement / Capture)
          */
         if ($payment->isPaid()) {
 
+            // Ambil data Member / Pendaftar
             $registration = $payment->accountRegistration;
 
             if (! $registration) {
@@ -80,29 +79,22 @@ class MidtransWebhookController extends Controller
             }
 
             /**
-             * 7. Create user jika belum ada
+             * 7. UPDATE LOGIC: Attach Event ke AccountRegistration
+             * Menghubungkan Member ke Event dengan status 'paid'
              */
-            $user = User::firstOrCreate(
-                ['email' => $registration->email],
-                [
-                    'name'     => $registration->name,
-                    'password' => Hash::make(Str::random(10)),
-                ]
-            );
-
-            /**
-             * 8. Attach event ke user (pivot)
-             */
-            $user->events()->syncWithoutDetaching([
+            $registration->events()->syncWithoutDetaching([
                 $payment->event_id => [
-                    'status'   => 'paid',
-                    'paid_at'  => now(),
+                    'payment_status' => 'paid', // Sesuai kolom database baru
+                    'paid_at'        => now(),
                 ]
             ]);
+
+            // Opsional: Update status akun utama jadi approved (jika diperlukan)
+            // $registration->update(['status' => 'approved']);
         }
 
         /**
-         * 9. Response ke Midtrans
+         * 8. Response ke Midtrans
          */
         return response()->json([
             'message' => 'OK',

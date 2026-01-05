@@ -47,6 +47,14 @@ class EventForm
             Forms\Components\TextInput::make('location_detail')
                 ->label('Location Detail / Link'),
 
+            Forms\Components\TextInput::make('link_course')
+                ->label('Course Link')
+                ->url()
+                ->placeholder('https://course.com')
+                ->helperText('Link akses course / materi event')
+                ->nullable(),
+
+
             Forms\Components\DateTimePicker::make('start_datetime')
                 ->required(),
 
