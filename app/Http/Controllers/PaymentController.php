@@ -82,7 +82,7 @@ class PaymentController extends Controller
                         'id'       => $event->id,
                         'price'    => (int) $event->price,
                         'quantity' => 1,
-                        'name'     => substr($event->nama_event ?? 'Tiket Event', 0, 50), // Midtrans max 50 chars name
+                        'name'     => substr($event->nama_event ?? 'Tiket Event', 0, 50), 
                     ]
                 ]
             ];
