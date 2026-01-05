@@ -52,7 +52,6 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    // OPTIONAL: update status
     $request->user()->update([
         'status' => 'approved',
     ]);
