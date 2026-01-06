@@ -13,6 +13,7 @@ use App\Http\Controllers\RegistrationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\ProfileController;
 
 // Landing Page
 Route::get('/', [LandingController::class, 'index'])->name('home');
@@ -81,4 +82,16 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/export/registrations', [ExportController::class, 'exportRegistrations'])
         ->name('export.registrations');
+});
+
+
+//Profile Routes
+Route::middleware(['auth:member'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    
+    // Route buat update data pendaftaran (General Tab)
+    Route::put('/profile/registration', [ProfileController::class, 'updateRegistration'])->name('profile.update-registration');
+    
+    // Route buat delete account
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

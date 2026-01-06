@@ -92,25 +92,46 @@
                                 <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
                                     <h4 class="font-bold text-gray-700 mb-4 flex items-center gap-2">
                                         Pilihan {{ $i }} 
-                                        @if($i == 1 || $i == 2 || $i == 3) <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full ml-2">Wajib</span> @else <span class="text-xs text-gray-400 font-normal">(Opsional)</span> @endif
+                                        @if($i == 1 || $i == 2 || $i == 3) 
+                                            <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full ml-2">Wajib</span> 
+                                        @else 
+                                            <span class="text-xs text-gray-400 font-normal">(Opsional)</span> 
+                                        @endif
                                     </h4>
                                     
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Universitas</label>
-                                            <input type="text" name="universitas_{{ $i }}" 
+                                            <select name="universitas_{{ $i }}" 
                                                 class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none bg-white" 
-                                                placeholder="Nama Kampus"
-                                                value="{{ old('universitas_'.$i) }}"
                                                 {{ $i == 1 ? 'required' : '' }}>
+                                                
+                                                <option value="" disabled selected>Pilih Kampus</option>
+                                                
+                                                @foreach($universities as $uni)
+                                                    <option value="{{ $uni->id }}" {{ old('universitas_'.$i) == $uni->id ? 'selected' : '' }}>
+                                                        {{ $uni->university_name }}
+                                                    </option>
+                                                @endforeach
+                                                
+                                            </select>
                                         </div>
+
                                         <div>
                                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Jurusan / Prodi</label>
-                                            <input type="text" name="jurusan_{{ $i }}" 
+                                            <select name="jurusan_{{ $i }}" 
                                                 class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/20 transition outline-none bg-white" 
-                                                placeholder="Nama Jurusan"
-                                                value="{{ old('jurusan_'.$i) }}"
                                                 {{ $i == 1 ? 'required' : '' }}>
+                                                
+                                                <option value="" disabled selected>Pilih Jurusan</option>
+                                                
+                                                @foreach($majors as $major)
+                                                    <option value="{{ $major->id }}" {{ old('jurusan_'.$i) == $major->id ? 'selected' : '' }}>
+                                                        {{ $major->major_name }}
+                                                    </option>
+                                                @endforeach
+                                                
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
