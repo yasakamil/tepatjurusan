@@ -18,6 +18,10 @@ class ArticleResource extends Resource
     protected static ?string $model = Article::class;
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Media Management';
+    }
 
     public static function form(Schema $schema): Schema
     {

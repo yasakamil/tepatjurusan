@@ -21,6 +21,11 @@ class RegistrationResource extends Resource
     protected static string|BackedEnum|null $navigationIcon =
         Heroicon::OutlinedClipboardDocument;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Student Management';
+    }
+
     protected static ?string $recordTitleAttribute = 'nama_lengkap';
 
     public static function form(Schema $schema): Schema

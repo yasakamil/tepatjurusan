@@ -20,6 +20,11 @@ class AccountRegistrationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserPlus;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Student Management';
+    }
+
     protected static ?string $navigationLabel = 'Account';
      protected static ?string $pluralLabel = 'Account';
     protected static ?string $label = 'Account';

@@ -18,6 +18,11 @@ class PaymentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCreditCard;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Student Management';
+    }
+
     protected static ?string $recordTitleAttribute = 'midtrans_order_id';
 
     public static function form(Schema $schema): Schema

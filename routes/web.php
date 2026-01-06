@@ -16,6 +16,9 @@ use App\Http\Controllers\ExportController;
 
 // Landing Page
 Route::get('/', [LandingController::class, 'index'])->name('home');
+Route::get('/admin', function () {
+    return redirect()->route('filament.admin.pages.dashboard');
+});
 
 // Event & Article Routes
 Route::post('/events/{event}/buy', [PaymentController::class, 'create']);
