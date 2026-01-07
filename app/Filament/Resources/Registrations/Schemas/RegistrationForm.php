@@ -5,37 +5,84 @@ namespace App\Filament\Resources\Registrations\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select; // Tambah ini
+use Filament\Schemas\Components\Section; // Tambah ini
+use Filament\Schemas\Components\Grid;   // Tambah ini
 use Filament\Schemas\Schema;
+use App\Models\University; // Pastikan model ini ada
+use App\Models\Major;      // Pastikan model ini ada
 
 class RegistrationForm
 {
     public static function configure(Schema $schema): Schema
     {
+        // --- LOGIC LOOPING PILIHAN KAMPUS (1-5) ---
+        $pilihanKampusSchema = [];
+
+        for ($i = 1; $i <= 5; $i++) {
+            $pilihanKampusSchema[] = Section::make("Pilihan Studi $i")
+                ->compact()
+                ->schema([
+                    Grid::make(2) // Bikin layout Kiri - Kanan
+                        ->schema([
+                            // KIRI: UNIVERSITAS
+                            Select::make("universitas_$i")
+                                ->label("Universitas $i")
+                                ->placeholder('Pilih Universitas')
+                                ->options(University::query()->pluck('university_name', 'id')) // Ambil Nama
+                                ->searchable()
+                                ->preload()
+                                ->required($i <= 3), // Wajib cuma 1-3
+
+                            // KANAN: JURUSAN
+                            Select::make("jurusan_$i")
+                                ->label("Jurusan / Prodi $i")
+                                ->placeholder('Pilih Jurusan')
+                                ->options(Major::query()->pluck('major_name', 'id')) // Ambil Nama
+                                ->searchable()
+                                ->preload()
+                                ->required($i <= 3),
+                        ]),
+                ]);
+        }
+        // ------------------------------------------
+
         return $schema->schema([
-            TextInput::make('nama_lengkap')->required(),
-            TextInput::make('tempat_lahir')->required(),
-            DatePicker::make('tanggal_lahir')->required(),
+            
+            // BAGIAN 1: DATA DIRI
+            Section::make('Data Diri Peserta')
+                ->schema([
+                    TextInput::make('nama_lengkap')->required(),
+                    TextInput::make('tempat_lahir')->required(),
+                    DatePicker::make('tanggal_lahir')->required(),
+                    
+                    Grid::make(2)->schema([
+                        TextInput::make('no_hp')->label('No HP / WA')->required(),
+                        TextInput::make('no_hp_orangtua')->label('No HP Orang Tua')->required(),
+                    ]),
+                    
+                    TextInput::make('email')->email()->required(),
+                    Textarea::make('alamat_domisili')->columnSpanFull(),
+                ]),
 
-            TextInput::make('no_hp')->required(),
-            TextInput::make('no_hp_orangtua')->required(),
-            TextInput::make('email')->email()->required(),
+            // BAGIAN 2: ASAL SEKOLAH
+            Section::make('Asal Sekolah')
+                ->schema([
+                    TextInput::make('asal_sekolah')->required(),
+                    Select::make('kelas_jenjang')
+                        ->options([
+                            '12 SMA/SMK' => 'Kelas 12 SMA/SMK',
+                            'Gap Year'   => 'Alumni / Gap Year',
+                            'Lainnya'    => 'Lainnya',
+                        ])
+                        ->required(),
+                ])->columns(2),
 
-            Textarea::make('alamat_domisili')->columnSpanFull(),
-
-            TextInput::make('asal_sekolah')->required(),
-            TextInput::make('kelas_jenjang')->required(),
-
-            TextInput::make('jurusan_1')->label('Jurusan 1')->required(),
-            TextInput::make('jurusan_2')->label('Jurusan 2')->required(),
-            TextInput::make('jurusan_3')->label('Jurusan 3')->required(),
-            TextInput::make('jurusan_4')->label('Jurusan 4'),
-            TextInput::make('jurusan_5')->label('Jurusan 5'),
-
-            TextInput::make('universitas_1')->label('Universitas 1')->required(),
-            TextInput::make('universitas_2')->label('Universitas 2')->required(),
-            TextInput::make('universitas_3')->label('Universitas 3')->required(),
-            TextInput::make('universitas_4')->label('Universitas 4'),
-            TextInput::make('universitas_5')->label('Universitas 5'),
+            // BAGIAN 3: RENCANA STUDI (Dropdown Univ & Jurusan)
+            Section::make('Rencana Studi (Pilihan Kampus)')
+                ->description('Urutan prioritas pilihan kampus dan jurusan')
+                ->schema($pilihanKampusSchema) // Masukin hasil looping tadi
+                ->collapsible(),
         ]);
     }
 }
