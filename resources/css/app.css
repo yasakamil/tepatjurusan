@@ -32,4 +32,21 @@
     }
 }
 
+@keyframes marquee-infinite {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        /* Geser 50% karena ada 2 set teks identik.
+           Pas set 1 abis, set 2 posisinya menggantikan set 1 persis di 0% */
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee-text {
+    display: flex;
+    width: fit-content; /* Biar lebarnya ngikutin konten, bukan layar */
+    /* Ubah 25s jadi angka lain buat atur kecepatan (makin kecil makin ngebut) */
+    animation: marquee-infinite 25s linear infinite;
+}
 

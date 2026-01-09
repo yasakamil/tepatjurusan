@@ -5,12 +5,12 @@ namespace App\Filament\Resources\Registrations\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select; // Tambah ini
-use Filament\Schemas\Components\Section; // Tambah ini
-use Filament\Schemas\Components\Grid;   // Tambah ini
+use Filament\Forms\Components\Select;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
-use App\Models\University; // Pastikan model ini ada
-use App\Models\Major;      // Pastikan model ini ada
+use App\Models\University;
+use App\Models\Major;
 
 class RegistrationForm
 {
@@ -23,7 +23,7 @@ class RegistrationForm
             $pilihanKampusSchema[] = Section::make("Pilihan Studi $i")
                 ->compact()
                 ->schema([
-                    Grid::make(2) // Bikin layout Kiri - Kanan
+                    Grid::make(2)
                         ->schema([
                             // KIRI: UNIVERSITAS
                             Select::make("universitas_$i")

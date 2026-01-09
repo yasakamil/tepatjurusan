@@ -10,7 +10,7 @@
             
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
                 <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-gray-900">
-                    Unleashing academic <br class="hidden md:block" /> excellence
+                    Tentang Kami <br class="hidden md:block" />
                 </h1>
             </div>
         </section>
@@ -21,13 +21,12 @@
                 
                 <div class="pr-0 md:pr-12">
                     <div class="inline-block border-b-2 border-rose-500 pb-1 mb-4">
-                        <span class="text-rose-500 font-bold uppercase tracking-widest text-xs">Since 2023</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                        Quality education for every students.
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                        Sejarah Tepat Jurusan
                     </h2>
                     <p class="text-gray-500 leading-relaxed mb-6">
-                        We have focused on generating new knowledge and promoting critical thinking amongst our students, graduating more than 7,000 young men and women during this time.
+                        Mengawali program educational consultant dengan nama Bidik Jurusan pada tahun 2009, kini kami kembali dengan nama baru Tepat Jurusan untuk membantu siswa-siswa di seluruh Indonesia menentukan Jurusan perkuliahan sesuai minat dan bakat masing-masing
                     </p>
                 </div>
 
@@ -53,23 +52,23 @@
                     <div class="grid grid-cols-2 gap-x-8 gap-y-16">
                         
                         <div>
-                            <h4 class="text-brand-purple font-bold text-sm mb-2">Student Nationalities</h4>
+                            <h4 class="text-brand-purple font-bold text-sm mb-2">Total Peserta</h4>
                             <div class="text-5xl md:text-6xl font-bold text-transparent" style="-webkit-text-stroke: 1px #1F2937;">
                                 100+
                             </div>
                         </div>
 
                         <div>
-                            <h4 class="text-brand-purple font-bold text-sm mb-2">International Students</h4>
+                            <h4 class="text-brand-purple font-bold text-sm mb-2">All-time Event</h4>
                             <div class="text-5xl md:text-6xl font-bold text-transparent" style="-webkit-text-stroke: 1px #1F2937;">
-                                25%
+                                4
                             </div>
                         </div>
 
                         <div>
-                            <h4 class="text-brand-purple font-bold text-sm mb-2">Daily Admissions</h4>
+                            <h4 class="text-brand-purple font-bold text-sm mb-2">Total Sekolah</h4>
                             <div class="text-5xl md:text-6xl font-bold text-transparent" style="-webkit-text-stroke: 1px #1F2937;">
-                                1k+
+                                12
                             </div>
                         </div>
 
@@ -87,7 +86,7 @@
         </section>
 
 
-        <section class="w-full border-t border-gray-100 py-12 mb-12">
+        <section class="w-full py-12 mb-12">
             <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
             
             <ul class="flex items-center justify-center md:justify-start [&_li]:mx-12 [&_img]:max-w-none animate-infinite-scroll">
@@ -128,7 +127,7 @@
                     <span class="text-brand-purple font-bold uppercase tracking-widest text-xs">Our History</span>
                 </div>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight max-w-3xl mx-auto">
-                    One of the largest, most diverse Bootcamp in the Indonesia.
+                    Program Kami Sebelumnya
                 </h2>
             </div>
 
@@ -139,26 +138,26 @@
                     @php
                         $histories = [
                             [
-                                'year' => '2023',
-                                'title' => 'Tepat Jurusan Was Made',
+                                'year' => '2014',
+                                'title' => 'Bandung',
                                 'desc' => 'We have focused on generating new knowledge and promoting critical thinking amongst our students.',
                                 'img' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=500&auto=format&fit=crop'
                             ],
                             [
-                                'year' => '2024',
-                                'title' => 'Nominate By Google',
+                                'year' => '2014',
+                                'title' => 'Jakarta',
                                 'desc' => 'Recognized as top ed-tech startup focusing on student development and career path finding.',
                                 'img' => 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=500&auto=format&fit=crop'
                             ],
                             [
-                                'year' => '2025',
-                                'title' => 'Expansion to SEA',
+                                'year' => '2015',
+                                'title' => 'Semarang',
                                 'desc' => 'Opening new branches in Malaysia and Singapore to broader our impact in Southeast Asia.',
                                 'img' => 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=500&auto=format&fit=crop'
                             ],
                             [
-                                'year' => '2026',
-                                'title' => 'AI Integrated System',
+                                'year' => '2025',
+                                'title' => 'Semarang',
                                 'desc' => 'Launching our first AI-powered counseling system to help students choose their major precisely.',
                                 'img' => 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=500&auto=format&fit=crop'
                             ],
